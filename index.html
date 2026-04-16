@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="ro">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Odys by Olga Pop | Atelier Croitorie Comandă Cluj-Napoca</title>
+    
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#474747",
+                        "surface-bright": "#fbf9f4",
+                        "error": "#ba1a1a",
+                        "on-background": "#1b1c19",
+                        "on-primary-container": "#949393",
+                        "inverse-surface": "#30312e",
+                        "on-secondary-container": "#785a1a",
+                        "surface-dim": "#dbdad5",
+                        "inverse-primary": "#c8c6c5",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#5c3f3f",
+                        "tertiary-fixed": "#ffdad9",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#5f5e5e",
+                        "primary-fixed": "#e4e2e1",
+                        "tertiary-fixed-dim": "#e6bdbd",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-container-high": "#eae8e3",
+                        "outline": "#747878",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e4e2dd",
+                        "primary-container": "#2c2c2c",
+                        "on-tertiary-fixed": "#2c1516",
+                        "background": "#fbf9f4",
+                        "secondary-fixed-dim": "#e9c176",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-container-low": "#f5f3ee",
+                        "on-primary": "#ffffff",
+                        "surface": "#fbf9f4",
+                        "on-surface": "#1b1c19",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container": "#f0eee9",
+                        "outline-variant": "#c4c7c7",
+                        "primary": "#171818",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-tertiary-container": "#af8a8a",
+                        "surface-container-highest": "#e4e2dd",
+                        "tertiary-container": "#3f2526",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#775a19",
+                        "on-secondary-fixed": "#261900",
+                        "on-surface-variant": "#444748",
+                        "secondary-container": "#fed488",
+                        "tertiary": "#271112",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Noto Serif', serif; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+
+        /* Animation Utilities */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.slide-right {
+            transform: translateX(-40px) translateY(0);
+        }
+        .reveal.slide-left {
+            transform: translateX(40px) translateY(0);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        .image-zoom {
+            overflow: hidden;
+        }
+        .image-zoom img {
+            transition: transform 1.5s ease;
+        }
+        .image-zoom:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-secondary-container selection:text-on-secondary-container relative">
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-stone-50/90 backdrop-blur-md transition-all duration-500 ease-in-out border-b border-stone-200/40">
+        <div class="flex justify-between items-center px-6 lg:px-12 py-4 lg:py-6 w-full max-w-screen-2xl mx-auto">
+            <!-- Mobile Menu Icon -->
+            <button class="lg:hidden text-on-surface hover:opacity-70 transition-opacity">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+            
+            <a href="#" class="flex flex-shrink-0 items-center justify-center group" aria-label="Odys Logo">
+                <!-- Pure SVG + CSS Vector Logo for absolute perfection on any background -->
+                <span class="text-[2.5rem] lg:text-[3rem] tracking-tight text-on-surface group-hover:text-secondary transition-colors pr-1" style="font-family: 'Great Vibes', cursive; line-height: 1; padding-top: 5px;">Odys</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 lg:w-10 lg:h-10 text-on-surface group-hover:text-secondary transition-colors -ml-1.5 -mt-5 transform -rotate-12">
+                    <path d="M30 32 C 10 12, 0 25, 12 40 C 18 45, 27 38, 30 32" />
+                    <path d="M34 32 C 54 12, 64 25, 52 40 C 46 45, 37 38, 34 32" />
+                    <path d="M30 32 C 20 45, 18 55, 26 58 C 30 59, 31 40, 31 36" />
+                    <path d="M34 32 C 44 45, 46 55, 38 58 C 34 59, 33 40, 33 36" />
+                    <path d="M32 28 C 30 20, 25 15, 22 17" />
+                    <path d="M32 28 C 34 20, 39 15, 42 17" />
+                    <path d="M32 28 L 32 40" stroke-width="2.5" />
+                </svg>
+            </a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex space-x-8">
+                <a class="nav-link text-on-surface-variant hover:text-on-surface transition-colors hover:bg-stone-100/50 px-3 py-1 font-headline text-sm tracking-widest uppercase border-b-2 border-transparent" href="#poveste">Povestea</a>
+                <a class="nav-link text-on-surface-variant hover:text-on-surface transition-colors hover:bg-stone-100/50 px-3 py-1 font-headline text-sm tracking-widest uppercase border-b-2 border-transparent" href="#proces">Proces</a>
+                <a class="nav-link text-on-surface-variant hover:text-on-surface transition-colors hover:bg-stone-100/50 px-3 py-1 font-headline text-sm tracking-widest uppercase border-b-2 border-transparent" href="#galerie">Galerie</a>
+                <a class="nav-link text-on-surface-variant hover:text-on-surface transition-colors hover:bg-stone-100/50 px-3 py-1 font-headline text-sm tracking-widest uppercase border-b-2 border-transparent" href="#contact">Contact</a>
+            </div>
+            
+            <!-- Desktop CTA -->
+            <a href="tel:0740913537" class="hidden lg:block bg-primary text-on-primary rounded-sm px-6 py-2 text-sm font-medium hover:bg-primary-container transition-colors font-headline tracking-widest uppercase shadow-sm">
+                Sună Acum
+            </a>
+            
+            <!-- Mobile spacer to center the logo -->
+            <div class="w-6 lg:hidden"></div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen flex flex-col">
+        <!-- Hero Section -->
+        <header class="relative min-h-screen flex items-center pt-24 bg-surface" id="hero">
+            <div class="absolute inset-0 z-0">
+                <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                    <!-- The user's hero.mp4 -->
+                    <source src="hero.mp4" type="video/mp4">
+                </video>
+                <!-- Semi-transparent overlay to ensure text visibility -->
+                <div class="absolute inset-0 bg-stone-900/60 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-12 pt-32 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 text-surface-bright">
+                <div class="lg:col-span-8 flex flex-col justify-end lg:justify-center mt-32 lg:mt-0">
+                    <span class="font-label text-xs lg:text-sm uppercase tracking-[0.2em] text-secondary-container mb-4 lg:mb-6 reveal">Croitorie pentru Femei</span>
+                    <h1 class="font-headline text-4xl lg:text-7xl leading-[1.1] tracking-tight mb-6 lg:mb-8 reveal delay-100">
+                        Pasiune &amp; <span class="italic text-secondary-fixed">Eleganță</span> în Detalii
+                    </h1>
+                    <p class="font-body text-base lg:text-xl text-surface-variant max-w-2xl leading-relaxed mb-8 lg:mb-12 reveal delay-200">
+                        Creația unei piese unice este un dialog între formă și material. La Odys by Olga Pop, transformăm visul tău într-o rochie impecabilă ce îți celebrează silueta.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 reveal delay-300">
+                        <a href="tel:0740913537" class="bg-surface-bright text-primary px-8 py-4 rounded-sm hover:bg-stone-200 transition-colors tracking-wide text-sm font-medium uppercase min-w-[200px] text-center">Programează o Probă</a>
+                        <a href="https://www.facebook.com/AtelierOlgaPop/" target="_blank" class="text-surface-bright hover:text-secondary-container transition-colors text-sm font-medium tracking-wide flex items-center gap-2">
+                            <span>Descoperă Galeria pe Facebook</span>
+                            <span class="material-symbols-outlined text-[1.2em]">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Intro Content: Povestea -->
+        <section class="px-6 py-20 lg:py-32 bg-surface relative overflow-hidden" id="poveste">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-stone-200/40 rounded-full blur-3xl -ml-20 -mb-20"></div>
+            
+            <div class="max-w-screen-xl mx-auto relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    
+                    <!-- Left side: Big Heading -->
+                    <div class="reveal slide-right">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="h-px bg-secondary w-12"></div>
+                            <span class="font-label text-xs uppercase tracking-[0.2em] text-secondary font-semibold">Povestea Noastră</span>
+                        </div>
+                        <h2 class="font-headline text-4xl lg:text-6xl leading-[1.1] text-on-surface">
+                            Arta de a fi <br/>
+                            <span class="italic text-secondary-fixed font-light">Autentică</span>
+                        </h2>
+                    </div>
+
+                    <!-- Right side: Content with stagger -->
+                    <div class="relative reveal slide-left delay-200">
+                        <!-- Huge quote mark decorative -->
+                        <span class="absolute -top-14 -left-8 text-8xl text-stone-200/60 font-serif leading-none select-none">"</span>
+                        <p class="font-headline text-xl lg:text-3xl leading-relaxed text-on-surface relative z-10 mb-6 font-medium">
+                            Aducem viziunea ta la viață; de la prima măsurătoare, la creația absolută.
+                        </p>
+                        <p class="font-body text-base lg:text-lg text-on-surface-variant leading-relaxed">
+                            Fiecare cusătură spune o poveste. Într-o lume a producției în masă, atelierul nostru rămâne fidel meșteșugului autentic, rezultatul fiind un design ce rezonează cu feminitatea și grația ta absolută. Acolo unde timpul încetinește, calitatea devine o promisiune.
+                        </p>
+                        
+                        <div class="mt-8 flex items-center gap-4">
+                            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container border border-stone-200 text-secondary">
+                                <span class="material-symbols-outlined text-xl">history_edu</span>
+                            </span>
+                            <span class="font-headline text-sm uppercase tracking-widest text-on-surface-variant">Olga Pop - Fondator</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: The Canvas -->
+        <section class="py-16 lg:py-32 bg-surface-container-low" id="proces">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+                <div class="mb-16 lg:mb-24 flex flex-col md:flex-row gap-8 lg:gap-12 items-start md:items-end justify-between reveal">
+                    <div class="max-w-2xl">
+                        <h2 class="font-headline text-3xl lg:text-5xl text-on-surface mb-4 lg:mb-6 tracking-tight">De la Mătase la Siluetă</h2>
+                        <p class="font-body text-on-surface-variant text-base lg:text-lg leading-relaxed">
+                            Creația pentru femei presupune o înțelegere intuitivă a mișcărilor. Fiecare textură - de la mătasea fluidă până la dantela prețioasă - dictează propria sa formă magică.
+                        </p>
+                    </div>
+                    <div class="text-left md:text-right hidden md:block">
+                        <span class="block font-label text-xs lg:text-sm text-secondary uppercase tracking-widest">Pasul 01</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                    <div class="lg:col-span-7 relative image-zoom reveal rounded-sm shadow-md">
+                        <div class="aspect-[4/3] rounded-sm overflow-hidden bg-surface-container">
+                            <img alt="Materiale textile pretioase" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1_xxiZaoENa4ld1_sWJgEQhYtcP-7Qvd1lF_D8_e6xFHcZQ9b9TWbOtptrZXDrkFVKTPGw9E1RNSN-rhsq7W0Kc_ntYry7t6X-2G84T6LeLaMBaS3Sbr9-Wb28ykAa9gQLIKXHe6h7ZCMXzc2iszbHg8frFZ5zeNTdSVTnN0kwUnAgn8vwF-Ur2LvPLzpY2ctB4y0k9RnDCjrhUOB4XrTyrbA-__c_fnt7Ww19ZzXDa1Ux7se2pVBAleHTMSBeVY_tJI2SGAZ51_p"/>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-5 flex flex-col justify-center reveal delay-200">
+                        <span class="font-label text-xs text-secondary uppercase tracking-[0.2em] mb-4">Selecția</span>
+                        <h3 class="font-headline text-2xl lg:text-3xl text-on-surface mb-4 lg:mb-6">Panza Creativă</h3>
+                        <p class="font-body text-on-surface-variant leading-relaxed text-base">
+                            Selectăm exclusiv materiale rafinate, cu texturi pline de caracter. Alegerea potrivită accentuează fiecare detaliu al corpului, oferind libertate de mișcare și încredere.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: The Cut -->
+        <section class="py-16 lg:py-32 bg-surface">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                    
+                    <div class="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1 reveal">
+                        <span class="font-label text-xs text-secondary uppercase tracking-[0.2em] mb-4">Măiestria</span>
+                        <h3 class="font-headline text-2xl lg:text-3xl text-on-surface mb-6">Croiala Perfectă</h3>
+                        <div class="pl-4 border-l-2 border-secondary/40 mb-6 py-1">
+                            <p class="font-headline text-lg lg:text-xl text-on-surface-variant italic">
+                                "Precizia nu este rigidă; ea îți redă libertatea de a simți și a străluci."
+                            </p>
+                        </div>
+                        <p class="font-body text-on-surface-variant leading-relaxed text-base mb-8">
+                            Ghidat de o atenție meticuloasă la detalii, fiecare tipar este desenat manual. Prin croiala exactă, materialul se adaptează armonios curbelor naturale, devenind a doua piele a purtătoarei. Rochii de ocazie, rochii de mireasă și ținute elegante la superlativ.
+                        </p>
+                    </div>
+                    
+                    <div class="lg:col-span-7 relative order-1 lg:order-2 image-zoom reveal delay-200 rounded-sm shadow-md">
+                        <div class="aspect-[4/3] lg:aspect-[3/4] rounded-sm overflow-hidden bg-surface-container">
+                            <img alt="O croitoreasa trasand masuratori fine" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZr8LoNL3uwZWBsJOm9f-ACUrhS1msbA9nuPhuDWV7H5VINgsGAN8ssRxabE7ph9RXR2Ig2RT1F9MVpemqDwPP4D-Ly3kE2Kp1d2frFXBVZKwFXGPLCvXN51rdrJ_zlXsGvY13-g-SWZuvzatVEAoRp92S5FjBVqsCCvSUSjSU0gt3R7fm0yg5IJpdSt1s4fn9R7Dr7vf71cn0GS0mPzFryGutWKsbjaCIIrl5WpMZu5zik6nmQpWYH7-3VEeL9HZM1HwDQPtSpe7-"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section class="py-16 lg:py-32 bg-surface-container-low" id="galerie">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+                <div class="text-center md:text-left mb-12 lg:mb-20 reveal">
+                    <span class="font-label text-xs lg:text-sm uppercase tracking-[0.2em] text-secondary mb-4 block">Portofoliu Odys</span>
+                    <h2 class="font-headline text-3xl lg:text-5xl text-on-surface tracking-tight">O Fărâmă din Arta Noastră</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                    <div class="space-y-4 lg:space-y-6 lg:mt-12">
+                        <div class="aspect-[3/4] rounded-sm overflow-hidden image-zoom reveal cursor-pointer shadow-sm relative group">
+                            <img alt="Elegant dress on mannequin" class="w-full h-full object-cover" src="assets/gallery_dress_mannequin_1776361732023.png"/>
+                            <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 lg:space-y-6">
+                        <div class="aspect-[4/5] rounded-sm overflow-hidden image-zoom reveal delay-100 cursor-pointer shadow-sm relative group">
+                            <img alt="Hand-stitched lace details" class="w-full h-full object-cover" src="assets/gallery_measuring_1776361756495.png"/>
+                            <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 lg:space-y-6 lg:mt-12">
+                        <div class="aspect-[4/5] rounded-sm overflow-hidden image-zoom reveal delay-200 cursor-pointer shadow-sm relative group">
+                            <img alt="Detail of intricate beadwork" class="w-full h-full object-cover" src="assets/gallery_detail_1776361786118.png"/>
+                            <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 lg:space-y-6">
+                        <div class="aspect-[3/4] rounded-sm overflow-hidden image-zoom reveal delay-300 cursor-pointer shadow-sm relative group">
+                            <img alt="Elegant tailored suit" class="w-full h-full object-cover" src="assets/gallery_suit_1776361772975.png"/>
+                            <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to action Section -->
+        <section class="px-6 py-20 lg:py-28 bg-surface-container-high flex flex-col items-center text-center reveal" id="contact">
+            <h3 class="font-headline text-3xl lg:text-4xl text-on-surface mb-4">Pășește În Lumea Noastră</h3>
+            <p class="font-body text-on-surface-variant text-lg mb-8 max-w-xl">
+                 Ești gata să îți creezi rochia de vis? Contactează-ne direct sau fă-ne o vizită în atelierul nostru din inima Clujului.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+               <a href="tel:0740913537" class="bg-primary text-on-primary px-10 py-4 rounded-sm font-headline text-sm uppercase tracking-widest hover:bg-primary-container transition-colors shadow-lg">
+                    Apelează: 0740 913 537
+                </a>
+               <a href="tel:0787714748" class="bg-surface-lowest text-on-surface border border-outline-variant px-10 py-4 rounded-sm font-headline text-sm uppercase tracking-widest hover:bg-stone-200 transition-colors">
+                    Apelează: 0787 714 748
+                </a>
+            </div>
+            <p class="font-body text-on-surface-variant flex items-center justify-center gap-2 mt-4">
+                <span class="material-symbols-outlined text-secondary">location_on</span>
+                Str. București nr. 77, Cluj-Napoca
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-surface-container-low border-t border-stone-200/60 relative z-10 pb-24 lg:pb-12">
+        <div class="px-6 lg:px-12 py-12 lg:py-16 w-full max-w-screen-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+                <!-- Brand Space -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <a href="#" class="flex flex-shrink-0 items-center justify-center group mb-6" aria-label="Odys Logo">
+                        <span class="text-[3rem] tracking-tight text-on-surface group-hover:text-secondary transition-colors pr-1" style="font-family: 'Great Vibes', cursive; line-height: 1; padding-top: 5px;">Odys</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-on-surface group-hover:text-secondary transition-colors -ml-1.5 -mt-5 transform -rotate-12">
+                            <path d="M30 32 C 10 12, 0 25, 12 40 C 18 45, 27 38, 30 32" />
+                            <path d="M34 32 C 54 12, 64 25, 52 40 C 46 45, 37 38, 34 32" />
+                            <path d="M30 32 C 20 45, 18 55, 26 58 C 30 59, 31 40, 31 36" />
+                            <path d="M34 32 C 44 45, 46 55, 38 58 C 34 59, 33 40, 33 36" />
+                            <path d="M32 28 C 30 20, 25 15, 22 17" />
+                            <path d="M32 28 C 34 20, 39 15, 42 17" />
+                            <path d="M32 28 L 32 40" stroke-width="2.5" />
+                        </svg>
+                    </a>
+                    <p class="font-body text-sm text-on-surface-variant leading-relaxed max-w-xs">
+                        Odys by Olga Pop transformă arta croitoriei pe comandă într-o experiență unică. Eleganță, finețe și o atenție desăvârșită la detalii, doar pentru tine.
+                    </p>
+                </div>
+                
+                <!-- Useful Links -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-headline text-lg text-on-surface mb-6">Navigație</h4>
+                    <nav class="flex flex-col space-y-3">
+                        <a href="#poveste" class="font-body text-sm text-on-surface-variant hover:text-secondary transition-colors">Povestea Noastră</a>
+                        <a href="#proces" class="font-body text-sm text-on-surface-variant hover:text-secondary transition-colors">Proces Creativ</a>
+                        <a href="#galerie" class="font-body text-sm text-on-surface-variant hover:text-secondary transition-colors">Portofoliu Odys</a>
+                    </nav>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-headline text-lg text-on-surface mb-6">Informații Contact</h4>
+                    <ul class="flex flex-col space-y-4 font-body text-sm text-on-surface-variant">
+                        <li class="flex items-start gap-3 justify-center md:justify-start">
+                            <span class="material-symbols-outlined text-[1.2rem] text-secondary shrink-0">location_on</span>
+                            <span>Strada București nr. 77<br/>Cluj-Napoca, România</span>
+                        </li>
+                        <li class="flex items-center gap-3 justify-center md:justify-start">
+                            <span class="material-symbols-outlined text-[1.2rem] text-secondary shrink-0">call</span>
+                            <div class="flex flex-col">
+                                <a href="tel:0740913537" class="hover:text-secondary transition-colors">0740 913 537</a>
+                                <a href="tel:0787714748" class="hover:text-secondary transition-colors">0787 714 748</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-headline text-lg text-on-surface mb-6">Urmărește-ne</h4>
+                    <p class="font-body text-sm text-on-surface-variant mb-4 max-w-xs">Descoperă cele mai noi creații și lasă-te inspirată de arta croitoriei noastre.</p>
+                    <a href="https://www.facebook.com/AtelierOlgaPop/" target="_blank" class="flex items-center gap-2 text-stone-600 hover:text-blue-700 transition-colors bg-white px-5 py-3 rounded-lg border border-stone-200 shadow-sm hover:shadow-md">
+                        <!-- Facebook Icon -->
+                        <svg class="w-5 h-5 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <span class="font-body text-sm font-medium">Atelier Olga Pop</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Bottom Copyright -->
+            <div class="border-t border-stone-200/60 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <span class="font-body text-xs text-on-surface-variant mb-4 md:mb-0 text-center">
+                    © 2026 Atelier Croitorie Olga Pop. Toate drepturile rezervate.
+                </span>
+                <div class="flex items-center gap-6 text-xs font-body text-on-surface-variant">
+                    <a href="#" class="hover:text-secondary transition-colors underline underline-offset-4">Termeni și Condiții</a>
+                    <a href="#" class="hover:text-secondary transition-colors underline underline-offset-4">Confidențialitate</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation (Visible only on small screens) -->
+    <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe bg-surface-bright border-t border-stone-200/60 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary scale-95 active:scale-90 transition-transform" href="#hero">
+            <span class="material-symbols-outlined mb-1 text-2xl">home</span>
+            <span class="font-label text-[10px] uppercase tracking-tighter">Acasă</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-secondary font-semibold hover:text-secondary-fixed scale-95 active:scale-90 transition-transform" href="#galerie">
+            <span class="material-symbols-outlined mb-1 text-2xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+            <span class="font-label text-[10px] uppercase tracking-tighter">Galerie</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary scale-95 active:scale-90 transition-transform" href="tel:0740913537">
+            <span class="material-symbols-outlined mb-1 text-2xl">call</span>
+            <span class="font-label text-[10px] uppercase tracking-tighter">Sună</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary scale-95 active:scale-90 transition-transform" href="#contact">
+            <span class="material-symbols-outlined mb-1 text-2xl">location_on</span>
+            <span class="font-label text-[10px] uppercase tracking-tighter">Adresă</span>
+        </a>
+    </nav>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-stone-950/95 hidden flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2 bg-stone-800/50 hover:bg-stone-800 rounded-full">
+            <span class="material-symbols-outlined text-3xl block">close</span>
+        </button>
+        <div class="w-full h-full p-8 md:p-16 flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="Full view" class="max-w-full max-h-full object-contain scale-95 transition-transform duration-300 shadow-2xl">
+        </div>
+    </div>
+
+    <!-- Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Unobserve after revealing if you only want it to animate once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+
+            // ScrollSpy for Header Navigation
+            const sections = document.querySelectorAll("section[id], header[id]");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    // Adjusted offset for better detection
+                    if (window.scrollY >= sectionTop - 250) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("text-secondary", "font-semibold", "border-secondary");
+                    link.classList.add("text-on-surface-variant", "border-transparent");
+                    if (current && link.getAttribute("href") === "#" + current) {
+                        link.classList.add("text-secondary", "font-semibold", "border-secondary");
+                        link.classList.remove("text-on-surface-variant", "border-transparent");
+                    }
+                });
+            });
+            
+            
+            // Initial call to set active state
+            window.dispatchEvent(new Event("scroll"));
+
+            // Lightbox functionality for Gallery
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            const openLightbox = (src) => {
+                lightboxImg.src = src;
+                lightbox.classList.remove('hidden');
+                // Trigger reflow for transition
+                void lightbox.offsetWidth;
+                lightbox.classList.replace('opacity-0', 'opacity-100');
+                lightboxImg.classList.replace('scale-95', 'scale-100');
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.replace('opacity-100', 'opacity-0');
+                lightboxImg.classList.replace('scale-100', 'scale-95');
+                setTimeout(() => {
+                    lightbox.classList.add('hidden');
+                }, 300); // Matches transition duration
+            };
+
+            document.querySelectorAll('#galerie img').forEach(img => {
+                const trigger = img.closest('.cursor-pointer');
+                if (trigger) {
+                    trigger.addEventListener('click', () => openLightbox(img.src));
+                }
+            });
+
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', closeLightbox);
+            }
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    // Close only if clicking outside the image
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Close lightbox on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape" && lightbox && !lightbox.classList.contains('hidden')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
