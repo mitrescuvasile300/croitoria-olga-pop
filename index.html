@@ -162,8 +162,8 @@
         class="fixed top-0 w-full z-50 bg-stone-50/90 backdrop-blur-md transition-all duration-500 ease-in-out border-b border-stone-200/40">
         <div class="flex justify-between items-center px-6 lg:px-12 py-4 lg:py-6 w-full max-w-screen-2xl mx-auto">
             <!-- Mobile Menu Icon -->
-            <button class="lg:hidden text-on-surface hover:opacity-70 transition-opacity">
-                <span class="material-symbols-outlined text-2xl">menu</span>
+            <button id="mobile-menu-btn" class="lg:hidden text-on-surface hover:opacity-70 transition-opacity relative z-[60]">
+                <span class="material-symbols-outlined text-3xl">menu</span>
             </button>
 
             <a href="#" class="flex flex-shrink-0 items-center justify-center group" aria-label="Odys Logo">
@@ -204,6 +204,18 @@
 
             <!-- Mobile spacer to center the logo -->
             <div class="w-6 lg:hidden"></div>
+        </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="absolute top-0 left-0 w-full h-screen bg-stone-50/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 z-50 hidden opacity-0 transition-opacity duration-300">
+            <a class="mobile-nav-link text-on-surface text-3xl font-headline tracking-widest uppercase hover:text-secondary transition-colors" href="#poveste">Povestea</a>
+            <a class="mobile-nav-link text-on-surface text-3xl font-headline tracking-widest uppercase hover:text-secondary transition-colors" href="#proces">Proces</a>
+            <a class="mobile-nav-link text-on-surface text-3xl font-headline tracking-widest uppercase hover:text-secondary transition-colors" href="#galerie">Galerie</a>
+            <a class="mobile-nav-link text-on-surface text-3xl font-headline tracking-widest uppercase hover:text-secondary transition-colors" href="#contact">Contact</a>
+            <a class="mobile-nav-link mt-8 bg-primary text-on-primary px-10 py-4 rounded-sm font-headline text-lg uppercase tracking-widest shadow-md" href="tel:0740913537">
+                Sună Acum
+            </a>
         </div>
     </nav>
 
@@ -737,6 +749,36 @@
                     closeLightbox();
                 }
             });
+
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            if (mobileMenuBtn && mobileMenu) {
+                const mobileMenuIcon = mobileMenuBtn.querySelector("span");
+                const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+                const toggleMenu = () => {
+                    if (mobileMenu.classList.contains("hidden")) {
+                        mobileMenu.classList.remove("hidden");
+                        setTimeout(() => mobileMenu.classList.replace("opacity-0", "opacity-100"), 10);
+                        mobileMenuIcon.innerText = "close";
+                        document.body.style.overflow = "hidden"; // Prevent background scroll
+                    } else {
+                        mobileMenu.classList.replace("opacity-100", "opacity-0");
+                        setTimeout(() => {
+                            mobileMenu.classList.add("hidden");
+                            document.body.style.overflow = "";
+                        }, 300);
+                        mobileMenuIcon.innerText = "menu";
+                    }
+                };
+
+                mobileMenuBtn.addEventListener("click", toggleMenu);
+
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener("click", toggleMenu); // Closes menu when clicking a link
+                });
+            }
         });
     </script>
 </body>
